@@ -1,31 +1,70 @@
 ﻿#include "Simulation.hpp"
 #include "Camera.hpp"
 #include <gl/freeglut.h>
-#include <iostream>
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "SimulationObject.hpp"
 #include "SunComponent.hpp"
+#include "Skybox.hpp"
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 namespace Simulation
 {
 	int windowWidth, windowHeight;
 	bool keys[256];
 	Camera camera;
+	Skybox* skybox;
 	SimulationObject* sun;
+	SimulationObject* planet;
+	float angle = 0.0;
+
+	std::string loadFile(const char* fname)
+	{
+		std::ifstream file(fname);
+		if (!file.is_open())
+		{
+			std::cout << "Unable to open file " << fname << std::endl;
+			exit(1);
+		}
+
+		std::stringstream fileData;
+		fileData << file.rdbuf();
+		file.close();
+
+		return fileData.str();
+	}
 
 	void loadContent()
 	{
 		ZeroMemory(keys, sizeof keys);
 		camera = Camera(0, -4, 0, 0, 0, 0);
+		skybox = new Skybox();
+		std::vector<std::string> faces;
+		{
+			"right.jpg",
+				"left.jpg",
+				"top.jpg",
+				"bottom.jpg",
+				"front.jpg",
+				"back.jpg";
+		};
+		unsigned int cubemapTexture = skybox->load_cubemap(faces);
+
 
 		sun = new SimulationObject();
 		sun->position = Vec3f(0, 0, -1);
 		sun->addComponent(new SunComponent());
+
+		planet = new SimulationObject();
+		planet->position = Vec3f(1, 1, -1);
+		planet->addComponent(new SunComponent());
 	}
 
 	void update(float deltaTime)
 	{
+		angle += 0.01;
 	}
 
 	void draw()
@@ -35,8 +74,9 @@ namespace Simulation
 		glRotatef(camera.rotZ, 0, 0, 1);
 		glTranslatef(camera.posX, camera.posZ, camera.posY);
 
-
+		glRotatef(angle, 0, 0, 1);
 		sun->draw();
+		planet->draw();
 	}
 
 	void onKey(Key key)

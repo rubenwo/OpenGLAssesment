@@ -84,10 +84,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)freeglut\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)glew\include;$(SolutionDir)freeglut\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)freeglut\lib\x64</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)glew\lib\x64;$(SolutionDir)freeglut\lib\x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -124,6 +124,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Simulation.cpp" />
     <ClCompile Include="SimulationObject.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="SunComponent.cpp" />
     <ClCompile Include="Vec.cpp" />
   </ItemGroup>
@@ -134,8 +135,22 @@
     <ClInclude Include="Globals.hpp" />
     <ClInclude Include="Simulation.hpp" />
     <ClInclude Include="SimulationObject.hpp" />
+    <ClInclude Include="Skybox.hpp" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="SunComponent.hpp" />
     <ClInclude Include="Vec.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\skybox\back.jpg" />
+    <Image Include="..\..\skybox\bottom.jpg" />
+    <Image Include="..\..\skybox\front.jpg" />
+    <Image Include="..\..\skybox\left.jpg" />
+    <Image Include="..\..\skybox\right.jpg" />
+    <Image Include="..\..\skybox\top.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="skybox.fs" />
+    <None Include="skybox.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
