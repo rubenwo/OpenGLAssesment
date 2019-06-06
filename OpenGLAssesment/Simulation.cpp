@@ -12,6 +12,8 @@
 
 namespace Simulation
 {
+	int mouse_x = 0;
+	int mouse_y = 0;
 	int windowWidth, windowHeight;
 	bool keys[256];
 	Camera camera;
@@ -82,6 +84,20 @@ namespace Simulation
 	void onKey(Key key)
 	{
 		keys[key] = true;
+		switch (key)
+		{
+		case VK_ESCAPE:
+			glutLeaveMainLoop();
+			break;
+		case 'w':
+			camera.posZ -= 0.025f;
+			break;
+		case 's':
+			camera.posZ += 0.025f;
+			break;
+		default:
+			break;
+		}
 	}
 
 	void onKeyUp(Key key)
@@ -93,10 +109,10 @@ namespace Simulation
 		case VK_ESCAPE:
 			glutLeaveMainLoop();
 			break;
-		case GLUT_KEY_UP:
+		case 'w':
 			camera.posZ -= 0.025f;
 			break;
-		case GLUT_KEY_DOWN:
+		case 's':
 			camera.posZ += 0.025f;
 			break;
 		default:
@@ -106,6 +122,16 @@ namespace Simulation
 
 	void onMouseMove(int x, int y)
 	{
+		if (mouse_x != x)
+		{
+			camera.rotX = y;
+		}
+		if (mouse_y != y)
+		{
+			camera.rotY = x;
+		}
+		mouse_x = x;
+		mouse_y = y;
 	}
 
 	void onResize(int w, int h)

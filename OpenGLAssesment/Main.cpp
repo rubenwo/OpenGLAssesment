@@ -29,6 +29,7 @@ void mousePassiveMotion(int x, int y)
 	Simulation::onMouseMove(x, y);
 }
 
+
 void display()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -69,7 +70,8 @@ bool initGlut(int argc, char* argv[])
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyboard);
 	glutKeyboardUpFunc(keyboardup);
-	glutPassiveMotionFunc(mousePassiveMotion);
+	//glutPassiveMotionFunc(mousePassiveMotion);
+	glutMotionFunc(mousePassiveMotion);
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
 
 	return true;
