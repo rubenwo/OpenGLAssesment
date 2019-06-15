@@ -120,17 +120,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="object_loader.cpp" />
     <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Sun.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="drawable.h" />
     <ClInclude Include="globals.hpp" />
     <ClInclude Include="object_loader.h" />
     <ClInclude Include="renderer.h" />
+    <ClInclude Include="Shader.h" />
     <ClInclude Include="Sun.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cam_ver_shader.glsl" />
+    <None Include="sun_frag_shader.glsl" />
+    <None Include="sun_ver_shader.glsl" />
+    <None Include="TextureFragmentShader.fragmentshader" />
+    <None Include="TransformVertexShader.vertexshader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

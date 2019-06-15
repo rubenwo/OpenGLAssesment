@@ -36,6 +36,12 @@
     <ClCompile Include="Sun.cpp">
       <Filter>Source Files\drawables</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.hpp">
@@ -53,5 +59,28 @@
     <ClInclude Include="Sun.h">
       <Filter>Header Files\drawables</Filter>
     </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="sun_ver_shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="sun_frag_shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="cam_ver_shader.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="TransformVertexShader.vertexshader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="TextureFragmentShader.fragmentshader">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
