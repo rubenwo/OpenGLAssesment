@@ -2,61 +2,120 @@
 #include <gl/freeglut.h>
 #include "Simulation.h"
 #include "Globals.hpp"
+#include <iostream>
+int windowWidth;
+int windowHeight;
 
-Simulation simulation;
-
-void display_func(void)
+void reshape(int w, int h)
 {
-	simulation.display_func();
+	windowWidth = w;
+	windowHeight = h;
+	glViewport(0, 0, w, h);
 }
 
-void reshape_func(int width, int height)
+void keyboard(unsigned char key, int x, int y)
 {
-	simulation.reshape_func(width, height);
+	Simulation::onKey(key);
 }
 
-void idle_func(void)
+void keyboardup(unsigned char key, int x, int y)
 {
-	simulation.idle_func();
+	Simulation::onKeyUp(key);
 }
 
-
-void mouse_func(int button, int state, int x, int y)
+void mousePassiveMotion(int x, int y)
 {
-	simulation.mouse_func(button, state, x, y);
+	Simulation::onMouseMove(x, y);
 }
 
-void mouse_wheel_func(int wheel, int direction, int x, int y)
+void mouseWheel(int wheel, int dir, int x, int y)
 {
-	simulation.mouse_wheel_func(wheel, direction, x, y);
+	Simulation::onMouseWheel(wheel, dir, x, y);
 }
 
-void keyboard_func(unsigned char key, int x, int y)
+void specialKey(int key, int x, int y)
 {
-	simulation.keyboard_func(key, x, y);
+	Simulation::onKey(key);
+}
+
+void specialKeyUp(int key, int x, int y)
+{
+	Simulation::onKeyUp(key);
+}
+
+void display()
+{
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(90.0f, windowWidth / (float)windowHeight, 0.1f, 50.0f);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	Simulation::draw();
+
+	glutSwapBuffers();
+}
+
+bool initGlut(int argc, char* argv[])
+{
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+	glutInitWindowSize(windowWidth, windowHeight);
+	glutInit(&argc, argv);
+	glutCreateWindow(APPLICATION_NAME);
+	glutDisplayFunc(display);
+	glutIdleFunc(Simulation::idle);
+	glutReshapeFunc(reshape);
+	glutKeyboardFunc(keyboard);
+	glutSpecialFunc(specialKey);
+	glutSpecialUpFunc(specialKeyUp);
+	glutKeyboardUpFunc(keyboardup);
+	glutMouseWheelFunc(mouseWheel);
+	glutPassiveMotionFunc(mousePassiveMotion);
+	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
+
+	return true;
+}
+
+bool initOpenGL()
+{
+	glEnable(GL_DEPTH_TEST);
+
+	return true;
 }
 
 int main(int argc, char** argv)
 {
-	glutInit(&argc, argv);
+	windowWidth = WINDOW_WIDTH;
+	windowHeight = WINDOW_HEIGHT;
 
-	glutInitContextVersion(4, 2);
-	glutInitContextProfile(GLUT_COMPATIBILITY_PROFILE);
+	if (initGlut(argc, argv))
+		std::cout << "Succesfully initialized glut.\n";
+	else
+	{
+		std::cout << "Failed initializing glut.\n";
+		return GLUT_INIT_FAILED;
+	}
 
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-	glutCreateWindow(APPLICATION_NAME);
-	glutDisplayFunc(display_func);
-	glutReshapeFunc(reshape_func);
-	glutMouseFunc(mouse_func);
-	glutKeyboardFunc(keyboard_func);
-	glutMouseWheelFunc(mouse_wheel_func);
-	glutIdleFunc(idle_func);
+	if (initOpenGL())
+		std::cout << "Succesfully initialized OpenGL.\n";
+	else
+	{
+		std::cout << "Failed initializing OpenGL.\n";
+		return OPENGL_INIT_FAILED;
+	}
+	Simulation::onResize(windowWidth, windowHeight);
 
+	// Start loading in game content.
+	Simulation::loadContent();
 	glewExperimental = GL_TRUE;
 	glewInit();
-
+	// Start game.
 	glutMainLoop();
 
-	return 0;
+	Simulation::onClose();
+
+	return EXIT_SUCCESS;
 }

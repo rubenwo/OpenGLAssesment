@@ -1,18 +1,30 @@
 ﻿#pragma once
-#include "Renderer.h"
+#include "Globals.hpp"
 
-class Simulation
+namespace Simulation
 {
-private:
-	Renderer renderer_;
-public:
-	Simulation() = default;
-	~Simulation() = default;
+	// Needs to be publicly available for modules etc.
+	extern bool keys[256];
+	// Gets called when the engine is ready to load in content / initialize.
+	void loadContent();
+	// Gets called every frame for game logic.
+	void update(float deltaTime);
+	// Gets called on every draw.
+	void draw();
+	// Gets called when a key gets pressed.
+	void onKey(Key key);
+	// Gets called when a key is released.
+	void onKeyUp(Key key);
+	// Gets called when the mouse moves.
+	void onMouseMove(int x, int y);
+	// Gets called when the screen resizes.
+	void onResize(int w, int h);
+	// Gets called when app is closing.
+	void onClose();
 
-	void display_func(void);
-	void reshape_func(int width, int height);
-	void idle_func(void);
-	void mouse_func(int button, int state, int x, int y);
-	void mouse_wheel_func(int wheel, int direction, int x, int y);
-	void keyboard_func(unsigned char key, int x, int y);
+	void onMouseWheel(int wheel, int dir, int x, int y);
+
+	void loadTextures();
+
+	void idle();
 };
