@@ -5,7 +5,7 @@
 class Planet : public IRenderable
 {
 private:
-	float size;
+	float size, speed;
 	GLuint texture;
 
 public:

@@ -2,9 +2,11 @@
 #include <GL/freeglut.h>
 #include "Globals.hpp"
 #include <string>
+float s;
 
 Sun::Sun(std::string texturePath)
 {
+	s = 0;
 	position = {0, 0, 0};
 	rotation = {0, 0, 0};
 	Image* t = loadBMP(texturePath.c_str());
@@ -30,6 +32,7 @@ void Sun::draw() const
 	glDisable(GL_LIGHTING);
 
 	glPushMatrix();
+	glRotatef(s, 0, 1, 0);
 	glColor3f(0.8, 0.498039, 0.196078);
 	gluSphere(quadric, 15, 36, 18);
 	//glColor3f(1, 1, 0);
@@ -58,4 +61,5 @@ void Sun::draw() const
 
 void Sun::update(float deltatime) const
 {
+	s += 0.1f;
 }

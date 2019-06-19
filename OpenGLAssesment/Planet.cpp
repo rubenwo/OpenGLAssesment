@@ -6,7 +6,6 @@
 #include "Globals.hpp"
 
 Vec3f rot;
-float speed;
 
 Planet::Planet(Vec3f& pos, std::string texturePath, float size)
 {

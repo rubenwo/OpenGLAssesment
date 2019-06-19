@@ -6,6 +6,7 @@ class Sun : public IRenderable
 {
 private:
 	GLuint texture;
+	float speed;
 
 public:
 	Sun(std::string texturePath);

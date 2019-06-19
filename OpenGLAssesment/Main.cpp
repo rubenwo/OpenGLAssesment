@@ -3,6 +3,7 @@
 #include "Globals.hpp"
 #include "Simulation.h"
 #include <iostream>
+#include <ctime>
 
 bool initGlut(int argc, char* argv[])
 {
@@ -31,6 +32,7 @@ bool initOpenGL()
 
 int main(int argc, char* argv[])
 {
+	srand(time(0));
 	if (initGlut(argc, argv))
 		std::cout << "Succesfully initialized glut.\n";
 	else

@@ -23,6 +23,13 @@ namespace Simulation
 	static float first = 1;
 	static float second = 1;
 	point stars[500];
+	int windowWidth = WINDOW_WIDTH;
+	int windowHeight = WINDOW_HEIGHT;
+
+	inline float map(float input, float srcRangeLow, float srcRangeHigh, float dstRangeLow, float dstRangeHigh)
+	{
+		return dstRangeLow + (input - srcRangeLow) * (dstRangeHigh - dstRangeLow) / (srcRangeHigh - srcRangeLow);
+	}
 
 	int globalW, globalH;
 	//std::vector<GLuint> textures;
@@ -69,11 +76,9 @@ namespace Simulation
 	void CreatePlanets(Renderer* renderer, std::string texture)
 	{
 		std::cout << texture.c_str() << "\n";
-		Vec3f p = {float(rand() % 200 - 100), 0.0f, float(rand() % 20 - 10)};
-		while (p.x < 25)
-		{
-			p.x = float(rand() % 200 - 100);
-		}
+		Vec3f p = {float(random(25, 125)), 0.0f, float(random(-10, 10))};
+		if (random(0, 10) > 3)
+			p.x *= -1;
 
 		renderer->add_renderable(new Planet(p, texture, float(rand() % 10)));
 	}
@@ -86,7 +91,6 @@ namespace Simulation
 	{
 		int planet_amt = textures.size() - 1;
 		renderer = new Renderer();
-		srand(time(NULL));
 		renderer->add_renderable(new Sun(textures[0]));
 
 		for (auto i = 0; i < planet_amt; i++)
@@ -162,7 +166,8 @@ namespace Simulation
 		glViewport(0, 0, w, h);
 		globalH = h;
 		globalW = w;
-
+		windowHeight = h;
+		windowWidth = w;
 		// Setup viewing volume
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
@@ -172,6 +177,8 @@ namespace Simulation
 
 	void OnMouseActiveMove(int x, int y)
 	{
+		worldX = y; //scaleFactor * map(x, 0, windowWidth, -1, 1);
+		worldY = x; //scaleFactor * map(y, 0, windowWidth, -1, 1);
 	}
 
 	void OnMousePassiveMove(int x, int y)
