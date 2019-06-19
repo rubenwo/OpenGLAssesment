@@ -2,11 +2,15 @@
 #include <vector>
 #include "Vec.h"
 
+
 class IRenderable
 {
-private:
-	Vec3f position;
 public:
+	IRenderable() = default;
+	~IRenderable() = default;
+	Vec3f& position;
+	Vec3f& rotation;
+
 	virtual void draw() const
 	{
 	}

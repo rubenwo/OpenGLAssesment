@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include <GL/glut.h>
 #include <ctime>
+#include "Planet.h"
 
 namespace Simulation
 {
@@ -20,7 +21,6 @@ namespace Simulation
 	int globalW, globalH;
 
 
-
 	void keimeno(const char* str, float size)
 	{
 		glPushMatrix();
@@ -30,6 +30,7 @@ namespace Simulation
 			glutStrokeCharacter(GLUT_STROKE_ROMAN, str[i]);
 		glPopMatrix();
 	}
+
 	void RandomCoordinates(point* star)
 	{
 		int lowest = -1000, highest = 1000;
@@ -38,6 +39,7 @@ namespace Simulation
 		star->y = lowest + int(range * rand() / (RAND_MAX + 1.0));
 		star->z = lowest + int(range * rand() / (RAND_MAX + 1.0));
 	}
+
 	void DrawStars()
 	{
 		GLUquadricObj* quadric;
@@ -60,14 +62,17 @@ namespace Simulation
 
 	void LoadContent()
 	{
-		//renderer = new Renderer();
+		renderer = new Renderer();
+
+
+		Vec3f pos = {40, 0, -10};
+		renderer->add_renderable(new Planet(pos, 6));
 		//get random cordinates for the stars
 		for (int i = 0; i < 500; i++)
 			RandomCoordinates(&stars[i]);
 		srand(time(0));
 		//Parameter handling
 		glShadeModel(GL_SMOOTH);
-		glEnable(GL_DEPTH_TEST);
 
 		// polygon rendering mode
 		glEnable(GL_COLOR_MATERIAL);
@@ -79,8 +84,6 @@ namespace Simulation
 
 	void Render()
 	{
-	//	renderer->draw();
-
 		//CLEARS FRAME BUFFER ie COLOR BUFFER& DEPTH BUFFER (1.0)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clean up the colour of the window
 		// and the depth buffer
@@ -126,15 +129,15 @@ namespace Simulation
 		glPopMatrix();
 
 		glEnable(GL_LIGHTING);
-		GLfloat light_position[] = { 0.0, 0.0, 0.0, 1 };
+		GLfloat light_position[] = {0.0, 0.0, 0.0, 1};
 		glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-		GLfloat light_diff[] = { 1.0, 1.0, 1.0, 1.0 };
+		GLfloat light_diff[] = {1.0, 1.0, 1.0, 1.0};
 		glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diff);
-		GLfloat light_amb[] = { 0.0, 0.0, 0.0, 1.0 };
+		GLfloat light_amb[] = {0.0, 0.0, 0.0, 1.0};
 		glLightfv(GL_LIGHT0, GL_AMBIENT, light_amb);
 
-
-		glPushMatrix(); //1 planet
+		renderer->draw();
+		/*glPushMatrix(); //1 planet
 		glRotatef(rotx, 0, 1, 0);
 		glTranslatef(40, 0, -10.0);
 		glRotatef(rotx, 1, 0, 0);
@@ -165,7 +168,7 @@ namespace Simulation
 		glRotatef(rotx, 1, 0, 0);
 		glColor3f(0, 1, 1);
 		gluSphere(quadric, 11, 36, 18);
-		glPopMatrix();
+		glPopMatrix();*/
 
 		DrawStars();
 
@@ -175,16 +178,24 @@ namespace Simulation
 		// the hidden buffer and hide the visible one
 	}
 
+	int lastTime = 0;
+
 	void Idle()
 	{
 		if (animate)
 			rotx += 1.1;
 
+		int currentTime = glutGet(GLUT_ELAPSED_TIME);
+		float deltaTime = (currentTime - lastTime) / 1000.0f;
+		lastTime = currentTime;
+		renderer->update(deltaTime);
+
 		glutPostRedisplay();
 	}
 
 	void Reshape(int w, int h)
-	{// define the visible area of the window ( in pixels )
+	{
+		// define the visible area of the window ( in pixels )
 		if (h == 0) h = 1;
 		glViewport(0, 0, w, h);
 		globalH = h;
