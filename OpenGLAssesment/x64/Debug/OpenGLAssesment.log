@@ -1,1 +1,3 @@
-﻿  OpenGLAssesment.vcxproj -> C:\Users\diabl\Documents\CPPprojects\OpenGLAssesment\x64\Debug\OpenGLAssesment.exe
+﻿  Main.cpp
+  LINK : C:\Users\diabl\Documents\CPPprojects\OpenGLAssesment\x64\Debug\OpenGLAssesment.exe not found or not built by the last incremental link; performing full link
+  OpenGLAssesment.vcxproj -> C:\Users\diabl\Documents\CPPprojects\OpenGLAssesment\x64\Debug\OpenGLAssesment.exe

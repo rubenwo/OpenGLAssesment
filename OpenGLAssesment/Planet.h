@@ -1,15 +1,12 @@
 ﻿#pragma once
-#include "Drawable.hpp"
-#include "Vec.h"
+#include "Renderer.h"
 
-class Planet : public Drawable
+class Planet : public IRenderable
 {
-private:
-	Vec3f pos;
-	Vec3f speed;
 public:
-	Planet();
-	Planet(Vec3f& pos, Vec3f& speed);
+	Planet() = default;
+	Planet(Vec3f& pos);
 	~Planet() = default;
 	void draw() const override;
+	void update(float deltatime) const override;
 };

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "Visuals.h"
+#include "Globals.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -14,11 +15,11 @@ int main(int argc, char* argv[])
 
 	// Define the main window size and initial position 
 
-	glutInitWindowSize(800, 800);
-	glutInitWindowPosition(50, 50);
+	glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+	//glutInitWindowPosition(50, 50);
 
 	// Create and label the main window
-	glutCreateWindow("Solar system");
+	glutCreateWindow(APPLICATION_NAME);
 
 	// Configure various properties of the OpenGL rendering context
 	Setup();
