@@ -4,6 +4,7 @@
 #include "TextureLoader.h"
 #include "Sun.h"
 #include "Globals.hpp"
+#include <iostream>
 
 Vec3f rot;
 
@@ -13,8 +14,8 @@ Planet::Planet(Vec3f& pos, std::string texturePath, float size)
 	rotation = {0, 0, 0};
 	rot = rotation;
 	this->size = size;
-	speed = random(1, 5);
-
+	speed = random(1, 100);
+	std::cout << speed << "'n";
 	Image* t = loadBMP(texturePath.c_str());
 	texture = loadTexture(t);
 	delete t;
@@ -43,6 +44,6 @@ void Planet::draw() const
 
 void Planet::update(float deltatime) const
 {
-	rot.x += speed / 10;
-	rot.y += speed / 10;
+	rot.x += speed / 1000;
+	rot.y += speed / 1000;
 }

@@ -76,7 +76,7 @@ namespace Simulation
 	void CreatePlanets(Renderer* renderer, std::string texture)
 	{
 		std::cout << texture.c_str() << "\n";
-		Vec3f p = {float(random(25, 125)), 0.0f, float(random(-10, 10))};
+		Vec3f p = {float(random(25, 125)), float(random(-5, 5)), float(random(-50, 50))};
 		if (random(0, 10) > 3)
 			p.x *= -1;
 

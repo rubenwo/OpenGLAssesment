@@ -1,14 +1,4 @@
-﻿  Simulation.cpp
+﻿  Planet.cpp
 c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\globals.hpp(26): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
 c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\globals.hpp(27): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(21): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(55): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(56): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(57): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(92): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(103): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(180): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(181): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(194): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(201): warning C4305: '-=': truncation from 'double' to 'float'
   OpenGLAssesment.vcxproj -> C:\Users\diabl\Documents\CPPprojects\OpenGLAssesment\x64\Debug\OpenGLAssesment.exe
