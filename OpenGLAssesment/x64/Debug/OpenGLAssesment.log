@@ -1,10 +1,15 @@
-﻿  Simulation.cpp
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(16): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(39): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(40): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(41): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(74): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(124): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(163): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(170): warning C4305: '-=': truncation from 'double' to 'float'
+﻿  TextureLoader.cpp
+  Planet.cpp
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\globals.hpp(25): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\globals.hpp(26): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+  Simulation.cpp
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(18): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(50): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(51): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(52): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(91): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(132): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(220): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(227): warning C4305: '-=': truncation from 'double' to 'float'
+  Generating Code...
   OpenGLAssesment.vcxproj -> C:\Users\diabl\Documents\CPPprojects\OpenGLAssesment\x64\Debug\OpenGLAssesment.exe

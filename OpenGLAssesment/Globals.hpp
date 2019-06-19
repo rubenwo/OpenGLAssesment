@@ -1,4 +1,6 @@
 #pragma once
+#ifndef GLOBALS_HPP
+#define GLOBALS_HPP
 #define APPLICATION_NAME "Solar System"
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720
@@ -17,3 +19,10 @@ struct Color4
 	{
 	}
 };
+
+inline float random(int low, int high)
+{
+	if (low > high) return high;
+	return low + (rand() % (high - low + 1));
+}
+#endif

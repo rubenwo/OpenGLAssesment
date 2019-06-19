@@ -5,6 +5,8 @@
 #include <ctime>
 #include "Planet.h"
 #include "Sun.h"
+#include "TextureLoader.h"
+#include <stack>
 
 namespace Simulation
 {
@@ -20,7 +22,16 @@ namespace Simulation
 	point stars[500];
 
 	int globalW, globalH;
+	std::vector<GLuint> textures;
 
+	GLuint loadTexture(Image* image)
+	{
+		GLuint textureId;
+		glGenTextures(1, &textureId);
+		glBindTexture(GL_TEXTURE_2D, textureId);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->width, image->height, 0, GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+		return textureId;
+	}
 
 	void keimeno(const char* str, float size)
 	{
@@ -57,17 +68,64 @@ namespace Simulation
 		}
 	}
 
+	void CreatePlanets(Renderer* renderer)
+	{
+		Vec3f p = {float(rand() % 200 - 100), 0.0f, float(rand() % 20 - 10)};
+		while (p.x < 25)
+		{
+			p.x = float(rand() % 200 - 100);
+		}
+
+		renderer->add_renderable(new Planet(p, textures[0], float(rand() % 10)));
+	}
 
 	Renderer* renderer;
 	camera cam = {0, 0, 0, 0, 0, 0};
+	GLuint sunTexture, merTexture, venTexture, earTexture, marTexture, jupTexture, satTexture, uraTexture, nepTexture,
+	       pluTexture, staTexture;
 
 	void LoadContent()
 	{
+		int planet_amt = 5;
 		renderer = new Renderer();
-
+		srand(time(NULL));
 		renderer->add_renderable(new Sun());
-		Vec3f pos = {40, 0, -10};
-		renderer->add_renderable(new Planet(pos, 6));
+		Image* sun = loadBMP("sun.bmp");
+		textures.push_back(loadTexture(sun));
+		delete sun;
+		Image* mer = loadBMP("mercury.bmp");
+		textures.push_back(loadTexture(mer));
+		delete mer;
+		Image* ven = loadBMP("venus.bmp");
+		textures.push_back(loadTexture(ven));
+		delete ven;
+		Image* ear = loadBMP("earth.bmp");
+		textures.push_back(loadTexture(ear));
+		delete ear;
+		Image* mar = loadBMP("mars.bmp");
+		textures.push_back(loadTexture(mar));
+		delete mar;
+		Image* jup = loadBMP("jupiter.bmp");
+		textures.push_back(loadTexture(jup));
+		delete jup;
+		Image* sat = loadBMP("saturn.bmp");
+		textures.push_back(loadTexture(sat));
+		delete sat;
+		Image* ura = loadBMP("uranus.bmp");
+		textures.push_back(loadTexture(ura));
+		delete ura;
+		Image* nep = loadBMP("neptune.bmp");
+		textures.push_back(loadTexture(nep));
+		delete nep;
+		Image* plu = loadBMP("pluto.bmp");
+		textures.push_back(loadTexture(plu));
+		delete plu;
+
+
+		for (auto i = 0; i < planet_amt; i++)
+		{
+			CreatePlanets(renderer);
+		}
 		//get random cordinates for the stars
 		for (int i = 0; i < 500; i++)
 			RandomCoordinates(&stars[i]);
@@ -120,13 +178,12 @@ namespace Simulation
 
 	void Idle()
 	{
-		if (animate)
-			rotx += 1.1;
-
 		int currentTime = glutGet(GLUT_ELAPSED_TIME);
 		float deltaTime = (currentTime - lastTime) / 1000.0f;
 		lastTime = currentTime;
-		renderer->update(deltaTime);
+
+		if (animate)
+			renderer->update(deltaTime);
 
 		glutPostRedisplay();
 	}
@@ -161,14 +218,14 @@ namespace Simulation
 			if (state > 0)
 			{
 				scaleFactor += 0.01;
-				glutPostRedisplay();
+				//glutPostRedisplay();
 			}
 			else
 			{
 				if (scaleFactor > 0.08)
 				{
 					scaleFactor -= 0.01;
-					glutPostRedisplay();
+					//	glutPostRedisplay();
 				}
 			}
 		}
@@ -192,7 +249,7 @@ namespace Simulation
 			break;
 		default: break;
 		}
-	//	glutPostRedisplay();
+		//	glutPostRedisplay();
 	}
 
 	void OnSpecialKey(unsigned char key, int x, int y)

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="TextureLoader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Renderer.cpp" />
@@ -29,12 +30,12 @@
   <ItemGroup>
     <ClInclude Include="Camera.hpp" />
     <ClInclude Include="Globals.hpp" />
+    <ClInclude Include="TextureLoader.h" />
     <ClInclude Include="ModelLoader.hpp" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Simulation.h" />
     <ClInclude Include="Sun.h" />
-    <ClInclude Include="TextureLoader.hpp" />
     <ClInclude Include="Vec.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
