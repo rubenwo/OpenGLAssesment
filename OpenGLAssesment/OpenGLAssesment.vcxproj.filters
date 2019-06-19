@@ -24,9 +24,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Visuals.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
@@ -39,11 +36,11 @@
     <ClCompile Include="Planet.cpp">
       <Filter>Source Files\Renderables</Filter>
     </ClCompile>
+    <ClCompile Include="Simulation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Visuals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Globals.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -58,6 +55,18 @@
     </ClInclude>
     <ClInclude Include="Sun.h">
       <Filter>Header Files\Renderables</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLoader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelLoader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Simulation.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
