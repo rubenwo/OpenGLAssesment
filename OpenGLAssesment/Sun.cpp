@@ -1,10 +1,15 @@
 ﻿#include "Sun.h"
 #include <GL/freeglut.h>
+#include "Globals.hpp"
+#include <string>
 
-Sun::Sun()
+Sun::Sun(std::string texturePath)
 {
 	position = {0, 0, 0};
 	rotation = {0, 0, 0};
+	Image* t = loadBMP(texturePath.c_str());
+	texture = loadTexture(t);
+	delete t;
 }
 
 Sun::~Sun()
@@ -20,7 +25,6 @@ void Sun::draw() const
 	GLUquadricObj* quadric;
 	quadric = gluNewQuadric();
 	gluQuadricDrawStyle(quadric, GLU_FILL);
-	gluDeleteQuadric(quadric);
 
 
 	glDisable(GL_LIGHTING);
@@ -28,11 +32,18 @@ void Sun::draw() const
 	glPushMatrix();
 	glColor3f(0.8, 0.498039, 0.196078);
 	gluSphere(quadric, 15, 36, 18);
-	glColor3f(1, 1, 0);
+	//glColor3f(1, 1, 0);
 	glEnable(GL_BLEND);
 	glBlendFunc(1, 1);
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	gluQuadricTexture(quadric, 1);
 	gluSphere(quadric, 20, 36, 18);
 	glDisable(GL_BLEND);
+	glDisable(GL_TEXTURE_2D);
+
 	glPopMatrix();
 
 	glEnable(GL_LIGHTING);
@@ -42,6 +53,7 @@ void Sun::draw() const
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diff);
 	GLfloat light_amb[] = {0.0, 0.0, 0.0, 1.0};
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_amb);
+	//gluDeleteQuadric(quadric);
 }
 
 void Sun::update(float deltatime) const
