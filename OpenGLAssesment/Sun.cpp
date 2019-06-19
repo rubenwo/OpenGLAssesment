@@ -1,6 +1,17 @@
 ﻿#include "Sun.h"
 #include <GL/freeglut.h>
 
+Sun::Sun()
+{
+	position = {0, 0, 0};
+	rotation = {0, 0, 0};
+}
+
+Sun::~Sun()
+{
+}
+
+
 void Sun::draw() const
 {
 	glEnable(GL_LIGHTING);
@@ -25,11 +36,11 @@ void Sun::draw() const
 	glPopMatrix();
 
 	glEnable(GL_LIGHTING);
-	GLfloat light_position[] = { 0.0, 0.0, 0.0, 1 };
+	GLfloat light_position[] = {0.0, 0.0, 0.0, 1};
 	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-	GLfloat light_diff[] = { 1.0, 1.0, 1.0, 1.0 };
+	GLfloat light_diff[] = {1.0, 1.0, 1.0, 1.0};
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diff);
-	GLfloat light_amb[] = { 0.0, 0.0, 0.0, 1.0 };
+	GLfloat light_amb[] = {0.0, 0.0, 0.0, 1.0};
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_amb);
 }
 

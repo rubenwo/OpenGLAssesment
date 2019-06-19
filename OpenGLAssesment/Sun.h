@@ -4,8 +4,8 @@
 class Sun : public IRenderable
 {
 public:
-	Sun() = default;
-	~Sun() = default;
+	Sun();
+		~Sun();
 	void draw() const override;
 	void update(float deltatime) const override;
 };

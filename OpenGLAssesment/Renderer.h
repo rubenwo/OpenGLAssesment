@@ -8,8 +8,8 @@ class IRenderable
 public:
 	IRenderable() = default;
 	~IRenderable() = default;
-	Vec3f& position;
-	Vec3f& rotation;
+	Vec3f position;
+	Vec3f rotation;
 
 	virtual void draw() const
 	{

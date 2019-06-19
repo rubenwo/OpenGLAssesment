@@ -4,6 +4,7 @@
 #include <GL/glut.h>
 #include <ctime>
 #include "Planet.h"
+#include "Sun.h"
 
 namespace Simulation
 {
@@ -64,7 +65,7 @@ namespace Simulation
 	{
 		renderer = new Renderer();
 
-
+		renderer->add_renderable(new Sun());
 		Vec3f pos = {40, 0, -10};
 		renderer->add_renderable(new Planet(pos, 6));
 		//get random cordinates for the stars
@@ -103,79 +104,16 @@ namespace Simulation
 			keimeno("Pause", 0.05f);
 			glPopMatrix();
 		}
-		glEnable(GL_LIGHTING);
-		glEnable(GL_LIGHT0);
-
-		GLUquadricObj* quadric;
-		quadric = gluNewQuadric();
-		gluQuadricDrawStyle(quadric, GLU_FILL);
-		gluDeleteQuadric(quadric);
-
-		glScalef(scaleFactor, scaleFactor, scaleFactor);
-
 		glRotatef(worldX, 1, 0, 0);
 		glRotatef(worldY, 0, 1, 0);
+		glScalef(scaleFactor, scaleFactor, scaleFactor);
 
-		glDisable(GL_LIGHTING);
-
-		glPushMatrix();
-		glColor3f(0.8, 0.498039, 0.196078);
-		gluSphere(quadric, 15, 36, 18);
-		glColor3f(1, 1, 0);
-		glEnable(GL_BLEND);
-		glBlendFunc(first, second);
-		gluSphere(quadric, 20, 36, 18);
-		glDisable(GL_BLEND);
-		glPopMatrix();
-
-		glEnable(GL_LIGHTING);
-		GLfloat light_position[] = {0.0, 0.0, 0.0, 1};
-		glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-		GLfloat light_diff[] = {1.0, 1.0, 1.0, 1.0};
-		glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diff);
-		GLfloat light_amb[] = {0.0, 0.0, 0.0, 1.0};
-		glLightfv(GL_LIGHT0, GL_AMBIENT, light_amb);
 
 		renderer->draw();
-		/*glPushMatrix(); //1 planet
-		glRotatef(rotx, 0, 1, 0);
-		glTranslatef(40, 0, -10.0);
-		glRotatef(rotx, 1, 0, 0);
-		glColor3f(1, 0, 0);
-		gluSphere(quadric, 5, 36, 18);
-		glPopMatrix();
-
-		glPushMatrix(); // 2 planet
-		glRotatef(rotx, 0, 1, 0);
-		glTranslatef(-20, 0.0, -70);
-		glRotatef(rotx, 0, 0, 1);
-		glColor3f(0, 1, 0);
-		gluSphere(quadric, 10, 36, 18);
-		glPopMatrix();
-
-		glPushMatrix(); // 3 planet
-		glRotatef(rotx, 0, 1, 0);
-		glTranslatef(-60, 0, 0.0);
-		glRotatef(rotx, 1, 0, 0);
-		glColor3f(0, 0, 1);
-		gluSphere(quadric, 17, 36, 18);
-		glPopMatrix();
-
-
-		glPushMatrix(); // 4 planet
-		glRotatef(rotx, 0, 1, 0);
-		glTranslatef(20, 0, 44.0);
-		glRotatef(rotx, 1, 0, 0);
-		glColor3f(0, 1, 1);
-		gluSphere(quadric, 11, 36, 18);
-		glPopMatrix();*/
 
 		DrawStars();
 
-
-		glutSwapBuffers(); // All drawing commands applied to the 
-		// hidden buffer, so now, bring forward
-		// the hidden buffer and hide the visible one
+		glutSwapBuffers();
 	}
 
 	int lastTime = 0;
@@ -254,7 +192,7 @@ namespace Simulation
 			break;
 		default: break;
 		}
-		glutPostRedisplay();
+	//	glutPostRedisplay();
 	}
 
 	void OnSpecialKey(unsigned char key, int x, int y)

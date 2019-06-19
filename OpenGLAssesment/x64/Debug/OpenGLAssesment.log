@@ -1,20 +1,10 @@
-﻿  Planet.cpp
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\planet.cpp(5): error C2280: 'IRenderable::IRenderable(void)': attempting to reference a deleted function
-  c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\renderer.h(9): note: see declaration of 'IRenderable::IRenderable'
-  c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\renderer.h(9): note: 'IRenderable::IRenderable(void)': function was implicitly deleted because 'IRenderable' has an uninitialized data member 'IRenderable::rotation' of reference type
-  c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\renderer.h(12): note: see declaration of 'IRenderable::rotation'
-  Renderer.cpp
-  Simulation.cpp
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(15): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(38): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+﻿  Simulation.cpp
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(16): warning C4305: 'initializing': truncation from 'double' to 'float'
 c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(39): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(40): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(73): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(122): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(126): warning C4244: 'argument': conversion from 'float' to 'GLenum', possible loss of data
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(186): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(225): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(232): warning C4305: '-=': truncation from 'double' to 'float'
-  Sun.cpp
-c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\sun.cpp(18): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-  Generating Code...
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(41): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(74): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(124): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(163): warning C4305: '+=': truncation from 'double' to 'float'
+c:\users\diabl\documents\cppprojects\openglassesment\openglassesment\simulation.cpp(170): warning C4305: '-=': truncation from 'double' to 'float'
+  OpenGLAssesment.vcxproj -> C:\Users\diabl\Documents\CPPprojects\OpenGLAssesment\x64\Debug\OpenGLAssesment.exe
